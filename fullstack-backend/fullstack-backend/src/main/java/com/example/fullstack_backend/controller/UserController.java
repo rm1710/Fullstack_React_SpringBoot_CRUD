@@ -1,13 +1,10 @@
 package com.example.fullstack_backend.controller;
 
 import com.example.fullstack_backend.Repository.UserRepository;
+import com.example.fullstack_backend.exception.UserNotFoundException;
 import com.example.fullstack_backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +24,10 @@ public class UserController {
     public List<User> getAllUsers() {
         return userRepository.findAll();  // Fetch all users from the database
     }
+
+    @GetMapping("/user/{id}")
+    User getUserById(@PathVariable long id) {
+        return userRepository.findById(id).orElseThrow(()->new UserNotFoundException(id));
+    }
+
 }

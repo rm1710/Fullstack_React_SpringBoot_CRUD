@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
   // Ensure axios is imported
 
@@ -65,13 +65,13 @@ export default function AddUser() {
                   className="form-control" 
                   id="username" 
                   placeholder="Enter your username" 
-                  name="username"  // Correct name attribute
+                  name="username"  
                   value={username}
                   onChange={onInputChange}
                 />
               </div>
               <button type="submit" className="btn btn-outline-primary">Submit</button>
-              <button type="reset" className="btn btn-outline-danger mx-2">Cancel</button>
+              <Link type="reset" className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
             </form>
           </div>
         </div>
